@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from selenium.webdriver.firefox.webdriver import WebDriver
-from selenium.webdriver.common.action_chains import ActionChains
-import time, unittest
+import unittest
 
 def is_alert_present(wd):
     try:
@@ -16,9 +15,10 @@ class add_new_member(unittest.TestCase):
         self.wd.implicitly_wait(60)
     
     def test_add_new_member(self):
-        success = True
         wd = self.wd
+        # open home page
         wd.get("http://localhost/addressbook/")
+        # login
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys("admin")
@@ -29,7 +29,9 @@ class add_new_member(unittest.TestCase):
         wd.find_element_by_name("pass").clear()
         wd.find_element_by_name("pass").send_keys("secret")
         wd.find_element_by_xpath("//form[@id='LoginForm']/input[3]").click()
+        # add_new_member
         wd.find_element_by_link_text("add new").click()
+        # enter_form_member
         wd.find_element_by_name("firstname").click()
         wd.find_element_by_name("firstname").clear()
         wd.find_element_by_name("firstname").send_keys("Mike")
@@ -94,9 +96,10 @@ class add_new_member(unittest.TestCase):
         wd.find_element_by_name("notes").click()
         wd.find_element_by_name("notes").clear()
         wd.find_element_by_name("notes").send_keys()
+        # send_form_member
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # logout
         wd.find_element_by_link_text("Logout").click()
-        self.assertTrue(success)
     
     def tearDown(self):
         self.wd.quit()
