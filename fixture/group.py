@@ -116,3 +116,12 @@ class GroupHelper:
         wd.find_element_by_name("notes").send_keys(Contacts.notes)
         # send_member_form
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+
+    def delete_contact(self):
+        wd = self.app.wd
+        # delete first contact
+        wd.find_element_by_name("selected[]").click()
+        # delete first contact
+        wd.find_element_by_xpath("//div[@id='content']/form[2]/div[2]/input").click()
+        wd.switch_to_alert().accept()
+
