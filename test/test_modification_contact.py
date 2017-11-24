@@ -1,9 +1,9 @@
-from model.contacts import Contacts
+from model.contact import Contact
 
 def test_modification_contact(app):
     app.session.login(username="admin", password="secret")
     app.contact.modification_contact(
-        Contacts(firstname="Lili", middlename="Sanders", lastname="", nickname="Mini", title="Apple",
+        Contact(firstname="Lili", middlename="Sanders", lastname="", nickname="Mini", title="Apple",
                  company="Apple", address="CA, Los Altos, 142", home="none",
                  mobile="1234567890", workphone="(213)3123213", fax="none", email="mini@ya.com", email2="mini@apple.com",
                  email3="none",
