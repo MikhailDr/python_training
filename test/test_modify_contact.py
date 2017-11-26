@@ -1,7 +1,6 @@
 from model.contact import Contact
 
 def test_modification_contact(app):
-    app.session.login(username="admin", password="secret")
     app.contact.modification_contact(
         Contact(firstname="Lili", middlename="Sanders", lastname="", nickname="Mini", title="Apple",
                  company="Apple", address="CA, Los Altos, 142", home="none",
@@ -13,4 +12,3 @@ def test_modification_contact(app):
                  annimonth="//div[@id='content']/form/select[4]//option[9]", anniyear="2009",
                  address2="CA, Los Altos, Hrandi, 143-1",
                  homephone2="Lampos", notes="none"))
-    app.session.logout()
