@@ -1,25 +1,15 @@
 from model.contact import Contact
 
 def test_modification_contact(app):
-    if not app.contact.modification_contact(
-        Contact(firstname="Lili", middlename="Sanders", lastname="", nickname="Mini", title="Apple",
-                 company="Apple", address="CA, Los Altos, 142", home="none",
-                 mobile="1234567890", workphone="(213)3123213", fax="none", email="mini@ya.com", email2="mini@apple.com",
-                 email3="none",
-                 homepage="www.mini.com", birthday="//div[@id='content']/form/select[1]//option[13]",
-                 birthmonth="//div[@id='content']/form/select[2]//option[9]", birthyear="1999",
-                 anniday="//div[@id='content']/form/select[3]//option[13]",
-                 annimonth="//div[@id='content']/form/select[4]//option[9]", anniyear="2009",
-                 address2="CA, Los Altos, Hrandi, 143-1",
-                 homephone2="Lampos", notes="none")):
-        app.contact.modification_contact(
-        Contact(firstname="Lili", middlename="Sanders", lastname="", nickname="Mini", title="Apple",
-                 company="Apple", address="CA, Los Altos, 142", home="none",
-                 mobile="1234567890", workphone="(213)3123213", fax="none", email="mini@ya.com", email2="mini@apple.com",
-                 email3="none",
-                 homepage="www.mini.com", birthday="//div[@id='content']/form/select[1]//option[13]",
-                 birthmonth="//div[@id='content']/form/select[2]//option[9]", birthyear="1999",
-                 anniday="//div[@id='content']/form/select[3]//option[13]",
-                 annimonth="//div[@id='content']/form/select[4]//option[9]", anniyear="2009",
-                 address2="CA, Los Altos, Hrandi, 143-1",
-                 homephone2="Lampos", notes="none"))
+    if app.contact.count_contact() == 0:
+        app.contact.create_new_contact(
+            Contact(firstname="Mike", middlename="Sedrick", lastname="Dashman", nickname="Miki", title="Finger",
+                    company="MIT", address="CA, Los Altos, 24", home="none",
+                    mobile="1234567890", workphone="(213)1235467", fax="none", email="alo1@ya.com", email2="mk@mit.com",
+                    email3="none",
+                    homepage="www.sedrick.com", birthday="//div[@id='content']/form/select[1]//option[20]",
+                    birthmonth="//div[@id='content']/form/select[2]//option[6]", birthyear="1986",
+                    anniday="//div[@id='content']/form/select[3]//option[20]",
+                    annimonth="//div[@id='content']/form/select[4]//option[6]", anniyear="2026",
+                    address2="CA, Los Altos, Hrandi, 25",
+                    homephone2="Campos", notes="none"))
