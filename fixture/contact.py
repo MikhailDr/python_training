@@ -16,35 +16,8 @@ class ContactHelper:
     def fill_contact_form(self, Contact):
         wd = self.app.wd
         self.change_field_value("firstname", Contact.firstname)
-        self.change_field_value("middlename", Contact.middlename)
         self.change_field_value("lastname", Contact.lastname)
-        self.change_field_value("nickname", Contact.nickname)
-        self.change_field_value("title", Contact.title)
-        self.change_field_value("company", Contact.company)
-        self.change_field_value("address", Contact.address)
-        self.change_field_value("home", Contact.home)
-        self.change_field_value("mobile", Contact.mobile)
-        self.change_field_value("work", Contact.workphone)
-        self.change_field_value("fax", Contact.fax)
-        self.change_field_value("email", Contact.email)
-        self.change_field_value("email2", Contact.email2)
-        self.change_field_value("email3", Contact.email3)
-        self.change_field_value("homepage", Contact.homepage)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[1]//option[20]").is_selected():
-            wd.find_element_by_xpath(Contact.birthday).click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[2]//option[6]").is_selected():
-            wd.find_element_by_xpath(Contact.birthmonth).click()
-        wd.find_element_by_name("byear").click()
-        wd.find_element_by_name("byear").clear()
-        wd.find_element_by_name("byear").send_keys(Contact.birthyear)
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[3]//option[20]").is_selected():
-            wd.find_element_by_xpath(Contact.anniday).click()
-        if not wd.find_element_by_xpath("//div[@id='content']/form/select[4]//option[6]").is_selected():
-            wd.find_element_by_xpath(Contact.annimonth).click()
-        self.change_field_value("ayear", Contact.anniyear)
-        self.change_field_value("address2", Contact.anniyear)
-        self.change_field_value("phone2", Contact.homephone2)
-        self.change_field_value("notes", Contact.notes)
+
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -67,14 +40,11 @@ class ContactHelper:
     def modify_first_contact(self, new_contact_data):
         wd = self.app.wd
         self.select_first_contact()
-        self.open_modification_form()
+        #open modification form
+        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
         self.fill_contact_form(new_contact_data)
         # update contact
         wd.find_element_by_name("update").click()
-
-    def open_modification_form(self):
-        wd = self.app.wd
-        wd.find_element_by_xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img").click()
 
     def count_contact(self):
         wd = self.app.wd
@@ -84,8 +54,9 @@ class ContactHelper:
         wd = self.app.wd
         contacts = []
         for element in wd.find_elements_by_css_selector("tr[name=entry]"):
-            firstname = element.text
-            lastname = element.text
+            cells = element.find_elements_by_tag_name("td")
+            firstname = cells[2].text
+            lastname = cells[1].text
             id = element.find_element_by_name("selected[]").get_attribute("value")
             contacts.append(Contact(firstname=firstname, lastname=lastname, id=id))
         return contacts
