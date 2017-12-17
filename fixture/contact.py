@@ -130,14 +130,25 @@ class ContactHelper:
         wd = self.app.wd
         self.open_contact_view_by_index(index)
         text = wd.find_element_by_id("content").text
-        text2 = wd.find_element_by_xpath("//div[@id='content']/a").text
         home = re.search("H: (.*)", text).group(1)
         mobile = re.search("M: (.*)", text).group(1)
         workphone = re.search("W: (.*)", text).group(1)
         homephone2 = re.search("P: (.*)", text).group(1)
-        email = re.search("href='mailto: (.*)'", text2).group(1)
-        email2 = re.search("href='mailto: (.*)'", text2).group(1)
-        email3 = re.search("href='mailto: (.*)'", text2).group(1)
-        return Contact(home=home,mobile=mobile, workphone=workphone, homephone2=homephone2, email=email, email2=email2, email3=email3)
+        return Contact(home=home,mobile=mobile, workphone=workphone, homephone2=homephone2)
+
+#    def get_contact_from_view_page(self, index):
+#        wd = self.app.wd
+#        self.open_contact_view_by_index(index)
+#        text = wd.find_element_by_id("content").text
+#        text2 = wd.find_element_by_xpath("//div[@id='content']/a").text
+#        home = re.search("H: (.*)", text).group(1)
+#        mobile = re.search("M: (.*)", text).group(1)
+#        workphone = re.search("W: (.*)", text).group(1)
+#        homephone2 = re.search("P: (.*)", text).group(1)
+#        email = re.search("href='mailto: (.*)'", text2).group(1)
+#        email2 = re.search("href='mailto: (.*)'", text2).group(1) #
+#        email3 = re.search("href='mailto: (.*)'", text2).group(1)
+#        return Contact(home=home,mobile=mobile, workphone=workphone, homephone2=homephone2, email=email, email2=email2, email3=email3)
+
 
 
