@@ -135,9 +135,9 @@ class ContactHelper:
         mobile = re.search("M: (.*)", text).group(1)
         workphone = re.search("W: (.*)", text).group(1)
         homephone2 = re.search("P: (.*)", text).group(1)
-        email = re.search("(.*)", text2).group(1)
-        email2 = re.search("(.*)", text2).group(1)
-        email3 = re.search("(.*)", text2).group(1)
+        email = re.search("href='mailto: (.*)'", text2).group(1)
+        email2 = re.search("href='mailto: (.*)'", text2).group(1)
+        email3 = re.search("href='mailto: (.*)'", text2).group(1)
         return Contact(home=home,mobile=mobile, workphone=workphone, homephone2=homephone2, email=email, email2=email2, email3=email3)
 
 
