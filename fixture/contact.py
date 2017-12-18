@@ -116,7 +116,7 @@ class ContactHelper:
         self.open_contact_to_edit_by_index(index)
         firstname = wd.find_element_by_name("firstname").get_attribute("value")
         lastname = wd.find_element_by_name("lastname").get_attribute("value")
-        address = wd.find_element_by_name("address").get_attribute("value")  ##
+        address = wd.find_element_by_name("address").get_attribute("value")  #
         id = wd.find_element_by_name("id").get_attribute("value")
         home = wd.find_element_by_name("home").get_attribute("value")
         mobile = wd.find_element_by_name("mobile").get_attribute("value")
