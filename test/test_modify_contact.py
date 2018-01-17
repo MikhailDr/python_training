@@ -14,3 +14,4 @@ def test_modify_contact_name(app, db, check_ui):
     if check_ui:
         assert sorted(new_contact, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(),
                                                                          key=Contact.id_or_max)
+#

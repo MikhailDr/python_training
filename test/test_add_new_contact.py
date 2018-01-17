@@ -12,7 +12,7 @@ def test_add_new_contact(app, json_contacts, db, check_ui):
     if check_ui:
         assert sorted(new_contact, key=Contact.id_or_max) == sorted(app.group.get_contact_list(), key=Contact.id_or_max)
 
-
+#
 #def test_add_new_contact(app):
 #    old_contact = app.contact.get_contact_list()
 #    contact = Contact(firstname="Wil", lastname="Wheaton")
