@@ -10,10 +10,21 @@ class ContactHelper:
         if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
             wd.find_element_by_link_text("home").click()
 
+    def open_groups_page(self):
+        wd = self.app.wd
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
+            wd.find_element_by_link_text("groups").click()
+
     def return_to_home_page(self):
         wd = self.app.wd
         if not (wd.current_url.endswith("/addressbook/") and len(wd.find_elements_by_name("Send e-Mail")) > 0):
             wd.find_element_by_link_text("home").click()
+
+
+    def return_to_groups_page(self):
+        wd = self.app.wd
+        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("group page")) > 0):
+            wd.find_element_by_link_text("group page").click()
 
 
     def create_new_contact(self, Contact):
@@ -180,6 +191,16 @@ class ContactHelper:
         # push button
         wd.find_element_by_name("add").click()
         self.return_to_home_page()
+        self.contact_cache = None
+
+
+    def delete_contact_from_group(self, contact_id, group_id):
+        wd = self.app.wd
+        self.open_groups_page()
+        self.select_group_by_id(group_id)
+        self.select_contact_by_id(contact_id)
+        wd.find_element_by_css_selector("input[name='remove']").click()
+        self.return_to_groups_page()
         self.contact_cache = None
 
 
